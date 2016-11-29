@@ -164,10 +164,10 @@ public class LeshanClusterServer {
 
         // Create Clustering support
         RedisTokenHandler tokenHandler = new RedisTokenHandler(jedis, clusterInstanceId);
-        new RedisRequestResponseHandler(jedis, lwServer, lwServer.getClientRegistry(), tokenHandler,
+        new RedisRequestResponseHandler(jedis, lwServer, lwServer.getRegService(), tokenHandler,
                 lwServer.getObservationRegistry());
-        lwServer.getClientRegistry().addListener(tokenHandler);
-        lwServer.getClientRegistry().addListener(new RedisRegistrationEventPublisher(jedis));
+        lwServer.getRegService().addListener(tokenHandler);
+        lwServer.getRegService().addListener(new RedisRegistrationEventPublisher(jedis));
 
         // Start Jetty & Leshan
         lwServer.start();
