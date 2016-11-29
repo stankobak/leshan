@@ -21,7 +21,7 @@ import java.net.InetSocketAddress;
 import org.eclipse.leshan.core.node.codec.DefaultLwM2mNodeDecoder;
 import org.eclipse.leshan.server.californium.LeshanServerBuilder;
 import org.eclipse.leshan.server.client.Client;
-import org.eclipse.leshan.server.client.ClientRegistryListener;
+import org.eclipse.leshan.server.client.RegistrationListener;
 import org.eclipse.leshan.server.client.ClientUpdate;
 import org.eclipse.leshan.server.cluster.RedisRegistrationStore;
 import org.eclipse.leshan.server.impl.SecurityRegistryImpl;
@@ -67,7 +67,7 @@ public class RedisIntegrationTestHelper extends IntegrationTestHelper {
         server = builder.build();
         // monitor client registration
         resetLatch();
-        server.getRegService().addListener(new ClientRegistryListener() {
+        server.getRegService().addListener(new RegistrationListener() {
             @Override
             public void updated(ClientUpdate update, Client clientUpdated) {
                 if (clientUpdated.getEndpoint().equals(getCurrentEndpoint())) {
