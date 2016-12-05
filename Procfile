@@ -1,1 +1,1 @@
-web: java -cp target/classes/* org.eclipse.leshan.server.demo.LeshanServerDemo -wp $PORT
+web: java -jar leshan-server-demo/target/leshan-server-demo-0.1.11-M15-SNAPSHOT-jar-with-dependencies.jar -wp $PORT
